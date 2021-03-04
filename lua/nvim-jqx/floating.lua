@@ -1,4 +1,4 @@
-local config = require("nvim-jqix.config")
+local config = require("nvim-jqx.config")
 
 local function floating_window(geometry)
    -- create internal window

@@ -1,5 +1,5 @@
-local fw = require("nvim-jqix.floating")
-local config = require("nvim-jqix.config")
+local fw = require("nvim-jqx.floating")
+local config = require("nvim-jqx.config")
 
 local function get_key_location(key)
    local coord = {
