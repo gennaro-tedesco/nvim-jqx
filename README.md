@@ -1,10 +1,10 @@
-# nvim-blast
-If only one could easily browse and preview json files in neovim...well, `nvim-blast` does just that!
+# nvim-jqix
+If only one could easily browse and preview json files in neovim...well, `nvim-jqix` does just that!
 
 ## Installation
 Install it using your favourite plugin manager; for instance if you are using vim-plug
 ```
-Plug 'gennaro-tedesco/nvim-blast'
+Plug 'gennaro-tedesco/nvim-jqix'
 ```
 We recommend to use the latest neovim [nightly build](https://github.com/neovim/neovim/releases/tag/nightly), as some lua options may not work otherwise.
 
