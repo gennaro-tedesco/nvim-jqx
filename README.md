@@ -15,7 +15,7 @@ Open a json file and issue `:Jqix`: the json is prettified and the quickfix wind
 
 Default commands
 
-| key      | description
+| command  | description
 |:-------- |:-------------
 |`:Jqix`   | populate the quickfix window with json keys
 |`<CR>`    | go to key location in file

@@ -30,7 +30,7 @@ end
 
 local function parse_jq_query(key, cur_file)
    local parsed_lines = {key, ''}
-   for s in vim.fn.system("jq '."..key.."' "..cur_file):gmatch("[^\r\n]+") do
+   for s in vim.fn.system("jq '.\""..key.."\"' "..cur_file):gmatch("[^\r\n]+") do
 	  table.insert(parsed_lines, s)
    end
    return parsed_lines
