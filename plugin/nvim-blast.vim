@@ -3,7 +3,6 @@ if exists("g:loaded_blast")
 endif
 
 nnoremap <Plug>BlastList :lua require('nvim-blast').blast_open()<CR>
-nmap <leader>b <Plug>BlastList
-
+command! BlastList execute 'lua require("nvim-blast").blast_open()<CR>'
 
 let g:loaded_blast = 1
