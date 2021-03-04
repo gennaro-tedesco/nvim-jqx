@@ -39,13 +39,13 @@ end
 local function on_keystroke()
    local line = vim.api.nvim_get_current_line()
    local words = {}
-   for word in line:gmatch("[^|%s]+") do table.insert(words, word) end
+   for word in line:gmatch("[^|]+") do table.insert(words, word:match("^%s*(.+)")) end
    local key, cur_file = words[#words], words[1]
    local results = parse_jq_query(key, cur_file)
    local floating_buf = fw.floating_window(config.geometry)
    vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, results)
    fw.set_json_opts(floating_buf)
-   vim.cmd('execute "normal! G$"')
+   vim.cmd('execute "normal! gg"')
 end
 
 return {

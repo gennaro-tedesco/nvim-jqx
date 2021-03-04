@@ -1,0 +1,45 @@
+{
+  "_id": "60411184f69184d7cbdbe207",
+  "index": 0,
+  "guid": "ac11be49-d7e5-4716-b95b-08bd7f04c631",
+  "is active": true,
+  "balance": "$1,620.45",
+  "picture": "http://placehold.it/32x32",
+  "age": 32,
+  "eyeColor": "brown",
+  "name": "Dianna Rowland",
+  "gender": "female",
+  "company": "MEGALL",
+  "email": "diannarowland@megall.com",
+  "phone": "+1 (989) 506-3197",
+  "address": "587 Thatford Avenue, Brookfield, Idaho, 8295",
+  "about": "Commodo laborum tempor et laborum sint. Id ut labore labore do ad duis fugiat sint. Id ut laborum ullamco reprehenderit Lorem fugiat nostrud aliqua aute non magna aliquip.\r\n",
+  "registered": "2019-06-20T06:41:43 -02:00",
+  "latitude": 82.560783,
+  "longitude": 147.725325,
+  "tags": [
+    "laboris",
+    "cillum",
+    "ullamco",
+    "consectetur",
+    "labore",
+    "sunt",
+    "occaecat"
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Black Schroeder"
+    },
+    {
+      "id": 1,
+      "name": "Sellers Garza"
+    },
+    {
+      "id": 2,
+      "name": "Michael Marquez"
+    }
+  ],
+  "morning greeting": "Hello, Dianna Rowland! You have 6 unread messages.",
+  "favoriteFruit": "strawberry"
+}
