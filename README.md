@@ -13,6 +13,8 @@ We recommend to use the latest neovim [nightly build](https://github.com/neovim/
 ## Usage
 Open a json file and issue `:Jqix`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
 
+![](img/demo.gif)
+
 Default commands
 
 | command  | description
@@ -26,6 +28,10 @@ Default commands
 If you prefer key-mappings rather than commands simply bind
 ```
 nmap ... <Plug>Jqix
+```
+The default key to open a query in floating window is `X`: you can ovverride it with
+```
+lua require('nvim-jqix.config').query_key = ...
 ```
 
 ## Feedback
