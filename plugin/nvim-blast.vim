@@ -1,11 +1,9 @@
 if exists("g:loaded_blast")
-	doautocmd QuickFixCmdPost cwindow
-else
-	cclose
-	execute min([ 10, len(getqflist()) ]) 'cwindow'
+	finish
 endif
 
-nnoremap <Plug>BlastList :lua require('nvim-blast').blast_list()<CR>
+nnoremap <Plug>BlastList :lua require('nvim-blast').blast_open()<CR>
 nmap <leader>b <Plug>BlastList
+
 
 let g:loaded_blast = 1

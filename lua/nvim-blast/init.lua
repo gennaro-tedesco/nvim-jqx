@@ -1,22 +1,22 @@
 -- this module exposes the main interface
 
-local function blast_list()
-   local cmd_lines = {}
+local blast = require("nvim-blast.blast")
 
-   for s in vim.fn.system('ls'):gmatch("[^\r\n]+") do
-	   table.insert(cmd_lines, s)
+local function set_qf_maps()
+   vim.api.nvim_exec([[autocmd FileType qf nnoremap <buffer> X :lua require("nvim-blast.blast").on_keystroke()<CR> ]], false)
+end
+
+local function blast_open()
+   if vim.bo.filetype ~= 'json' then
+	  print('not a json file')
+	  return nil
    end
 
-   local qf_list = {}
-   for _, v in pairs(cmd_lines) do
-	  table.insert(qf_list, {filename = v, lnum = 1, col = 10, vcol = 100, text = "asd"})
-   end
-
-   local result =  vim.fn.setqflist(qf_list, ' ')
-   print(result)
-   vim.cmd('copen')
+   vim.cmd('%! jq .')
+   set_qf_maps()
+   blast.populate_qf()
 end
 
 return {
-   blast_list = blast_list
+   blast_open = blast_open,
 }
