@@ -3,6 +3,9 @@ local geometry = {
    height = 0.3,
 }
 
+local query_key = 'X'
+
 return {
    geometry = geometry,
+   query_key = query_key,
 }

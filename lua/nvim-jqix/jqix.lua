@@ -45,6 +45,7 @@ local function on_keystroke()
    local floating_buf = fw.floating_window(config.geometry)
    vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, results)
    fw.set_json_opts(floating_buf)
+   vim.cmd('execute "normal! G$"')
 end
 
 return {

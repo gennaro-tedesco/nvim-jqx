@@ -1,9 +1,10 @@
 -- this module exposes the main interface
 
 local jqix = require("nvim-jqix.jqix")
+local config = require("nvim-jqix.config")
 
 local function set_qf_maps()
-   vim.api.nvim_exec([[autocmd FileType qf nnoremap <buffer> X :lua require("nvim-jqix.jqix").on_keystroke()<CR> ]], false)
+   vim.api.nvim_exec([[autocmd FileType qf nnoremap <buffer> ]]..config.query_key..[[ :lua require("nvim-jqix.jqix").on_keystroke()<CR> ]], false)
 end
 
 local function jqix_open()
