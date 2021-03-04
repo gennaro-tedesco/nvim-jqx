@@ -1,10 +1,10 @@
-# nvim-jqix
-If only one could easily browse and preview json files in neovim. Oh wait, `nvim-jqix` does just that!
+# nvim-jqx
+If only one could easily browse and preview json files in neovim. Oh wait, `nvim-jqx` does just that!
 
 ## Installation
 Install it using your favourite plugin manager; for instance if you are using vim-plug
 ```
-Plug 'gennaro-tedesco/nvim-jqix'
+Plug 'gennaro-tedesco/nvim-jqx'
 ```
 We recommend to use the latest neovim [nightly build](https://github.com/neovim/neovim/releases/tag/nightly), as some lua options may not work otherwise.
 
@@ -31,7 +31,7 @@ nmap ... <Plug>Jqix
 ```
 The default key to open a query in floating window is `X`: you can ovverride it with
 ```
-lua require('nvim-jqix.config').query_key = ...
+lua require('nvim-jqx.config').query_key = ...
 ```
 
 ## Feedback
