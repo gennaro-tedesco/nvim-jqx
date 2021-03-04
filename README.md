@@ -17,17 +17,17 @@ Open a json file and issue `:Jqix`: the json is prettified and the quickfix wind
 
 Default commands
 
-| command  | description
-|:-------- |:-------------
-|`:Jqix`   | populate the quickfix window with json keys
-|`<CR>`    | go to key location in file
-|X         | query values of key under cursor
-|`<Esc>`   | close floating window
+| command     | description
+|:----------- |:-------------
+|`:JqxList`   | populate the quickfix window with json keys
+|`<CR>`       | go to key location in file
+|X            | query values of key under cursor
+|`<Esc>`      | close floating window
 
 ## Customisation
 If you prefer key-mappings rather than commands simply bind
 ```
-nmap ... <Plug>Jqix
+nmap ... <Plug>JqxList
 ```
 The default key to open a query in floating window is `X`: you can ovverride it with
 ```
