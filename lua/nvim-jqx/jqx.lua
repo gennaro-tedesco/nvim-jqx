@@ -29,7 +29,7 @@ local function populate_qf()
 end
 
 local function parse_jq_query(key, cur_file)
-   local parsed_lines = {key, ''}
+   local parsed_lines = {}
    for s in vim.fn.system("jq '.\""..key.."\"' "..cur_file):gmatch("[^\r\n]+") do
 	  table.insert(parsed_lines, s)
    end
@@ -43,6 +43,9 @@ local function on_keystroke()
    local key, cur_file = words[#words], words[1]
    local results = parse_jq_query(key, cur_file)
    local floating_buf = fw.floating_window(config.geometry)
+
+   table.insert(results, 1, fw.centre_string(key))
+   table.insert(results, 2, '')
    vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, results)
    fw.set_json_opts(floating_buf)
    vim.cmd('execute "normal! gg"')
