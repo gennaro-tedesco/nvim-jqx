@@ -13,7 +13,7 @@ We recommend to use the latest neovim [nightly build](https://github.com/neovim/
 ## Usage
 Open a json file and issue `:JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
 
-![](demo.gif)
+![](examples/demo.gif)
 
 Default commands
 
@@ -24,7 +24,7 @@ Default commands
 |X            | query values of key under cursor
 |`<Esc>`      | close floating window
 
-Try it out directly with `nvim test.json -c JqxList`.
+Try it out directly with `nvim examples/test.json -c JqxList`.
 
 ## Customisation
 If you prefer key-mappings rather than commands simply bind
