@@ -3,8 +3,8 @@ local config = require("nvim-jqx.config")
 
 local function get_key_location(key)
    local coord = {
-	  row = vim.api.nvim_exec([[g/]]..key..[[/echo line('.')]], true),
-	  col = vim.api.nvim_exec([[g/]]..key..[[/execute "normal! ^" | echo col('.')-1]], true)
+	  row = vim.api.nvim_exec([[g/^\s*"]]..key..[[/echo line('.')]], true),
+	  col = vim.api.nvim_exec([[g/^\s*"]]..key..[[/execute "normal! ^" | echo col('.')-1]], true)
    }
    return coord
 end
