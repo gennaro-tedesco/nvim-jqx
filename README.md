@@ -26,6 +26,15 @@ Default commands
 
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
+## Advanced usage
+`nvim-jqx` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). The usage is identical: `:JqxList` on a `yaml` file.
+
+| json                   |  yaml
+|:---------------------- |:---------------------
+|![](examples/json.png)  |![](examples/yaml.png)
+
+Try it out directly with `nvim examples/test.yaml -c JqxList`.
+
 ## Customisation
 If you prefer key-mappings rather than commands simply bind
 ```
