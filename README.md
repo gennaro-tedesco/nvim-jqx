@@ -11,29 +11,38 @@ We recommend to use the latest neovim [nightly build](https://github.com/neovim/
 `jq` is a prerequisite, as this plugin executes `jq` queries internally.
 
 ## Usage
-Open a json file and issue `:JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
+`nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.
+
+Open a json file and issue `JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
 
 ![](examples/demo.gif)
+
+To execute more complicated and generic `jq` commands use `JqxQuery` instead. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json`:
+```
+# JqxQuery grammar
+JqxQuery friends[2].name
+"Michael Marquez"
+
+# jq equivalent
+jq ".friends[2].name" test.json
+"Michael Marquez"
+```
+![](examples/querydemo.gif)
 
 Default commands
 
 | command     | description
 |:----------- |:-------------
-|`:JqxList`   | populate the quickfix window with json keys
+|`JqxList`    | populate the quickfix window with json keys
+|`JqxQuery`   | executes a generic `jq` query in the current file
 |`<CR>`       | go to key location in file
 |X            | query values of key under cursor
 |`<Esc>`      | close floating window
 
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
-## Advanced usage
-`nvim-jqx` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). The usage is identical: `:JqxList` on a `yaml` file.
-
-| json                   |  yaml
-|:---------------------- |:---------------------
-|![](examples/json.png)  |![](examples/yaml.png)
-
-Try it out directly with `nvim examples/test.yaml -c JqxList`.
+## Yaml files
+`JqxList` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). Try it out directly with `nvim examples/test.yaml -c JqxList`.
 
 ## Customisation
 If you prefer key-mappings rather than commands simply bind
