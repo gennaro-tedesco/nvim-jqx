@@ -86,6 +86,7 @@ Two commands are exposed to the user: `JqxList` and `JqxQuery`.
   enter query: <query>
 <
 
+  Commands              *jqx-commands*
   The full list of commands that the plugin provides is the below:
 
 >
