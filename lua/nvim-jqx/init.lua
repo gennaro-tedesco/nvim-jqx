@@ -37,7 +37,7 @@ local function query_jq(q)
    local input_query = q=='' and vim.fn.input('enter query: ') or q
    if input_query == '' then vim.cmd('redraw'); print(' '); return nil end
    local cur_file = vim.fn.getreg("%")
-   local user_query = ft=='json' and 'jq \".'..input_query..'\" '..cur_file or 'yq eval \".'..input_query..'\" '..cur_file
+   local user_query = ft=='json' and "jq \'."..input_query.."\' "..cur_file or "yq eval \'."..input_query.."\' "..cur_file
    vim.fn.inputrestore()
 
    -- parsing query results

@@ -22,7 +22,7 @@ JqxQuery friends[2].name
 "Michael Marquez"
 
 # jq equivalent
-jq ".friends[2].name" test.json
+jq '.friends[2].name' test.json
 "Michael Marquez"
 ```
 ![](examples/querydemo.gif)
