@@ -17,15 +17,14 @@ Open a json file and issue `JqxList`: the json is prettified and the quickfix wi
 
 ![](examples/demo.gif)
 
-
-`JqxQuery` instead allows you to issue a generic `jq` command, so that you have flexibility to write more complicated queries. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json`:
+To execute more complicated and generic `jq` commands use `JqxQuery` instead. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json`:
 ```
-# jq command
-jq ".friends[2].name" test.json
+# JqxQuery grammar
+JqxQuery friends[2].name
 "Michael Marquez"
 
-# equivalent
-JqxQuery friends[2].name
+# jq equivalent
+jq ".friends[2].name" test.json
 "Michael Marquez"
 ```
 ![](examples/querydemo.gif)
@@ -34,8 +33,8 @@ Default commands
 
 | command     | description
 |:----------- |:-------------
-|`:JqxList`   | populate the quickfix window with json keys
-|`:JqxQuery`  | executes a generic `jq` query in the current file
+|`JqxList`    | populate the quickfix window with json keys
+|`JqxQuery`   | executes a generic `jq` query in the current file
 |`<CR>`       | go to key location in file
 |X            | query values of key under cursor
 |`<Esc>`      | close floating window
@@ -43,9 +42,7 @@ Default commands
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
 ## Yaml files
-`nvim-jqx` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). The usage is identical: `:JqxList` on a `yaml` file.
-
-Try it out directly with `nvim examples/test.yaml -c JqxList`.
+`JqxList` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). Try it out directly with `nvim examples/test.yaml -c JqxList`.
 
 ## Customisation
 If you prefer key-mappings rather than commands simply bind
