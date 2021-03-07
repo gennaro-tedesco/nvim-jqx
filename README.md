@@ -11,15 +11,20 @@ We recommend to use the latest neovim [nightly build](https://github.com/neovim/
 `jq` is a prerequisite, as this plugin executes `jq` queries internally.
 
 ## Usage
-Open a json file and issue `:JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
+`nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.
+
+Open a json file and issue `JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
 
 ![](examples/demo.gif)
+
+`JqxQuery` allows you to issue a generic `jq` command, so that you have flexibility to write more complicated queries. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json`.
 
 Default commands
 
 | command     | description
 |:----------- |:-------------
 |`:JqxList`   | populate the quickfix window with json keys
+|`:JqxQuery`  | executes a generic `jq` query in the current file
 |`<CR>`       | go to key location in file
 |X            | query values of key under cursor
 |`<Esc>`      | close floating window
