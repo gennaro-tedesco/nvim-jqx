@@ -1,0 +1,116 @@
+*nvim-jqx*: neovim interface to json files
+
+Author  : Gennaro Tedesco <gennarotedesco@gmail.com>
+Version : 0.0.1
+License : MIT license {{{
+
+  Copyright (c)
+
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+}}}
+
+==============================================================================
+CONTENTS				*jqx-contents*
+
+    1. INTRODUCTION ................. |jqx-introduction|
+    2. USAGE ........................ |jqx-usage|
+    3. CUSTOMISATION ................ |jqx-customisation|
+
+==============================================================================
+1. INTRODUCTION				*jqx-introduction*
+
+*nvim-jqx* is an interface to navigate and query json files from within neovim.
+It allows to:
+
+- populate the quickfix window with json keys, for easy look-up and navigation
+- show the values in correspondence of said keys in a floating window, upon key press
+- execute general and complicated `jq` queries, showing the results in a floating window
+
+`jq` is a prerequisite, as `nvim-jqx` executes `jq` queries internally,
+therefore you must have it installed.
+
+==============================================================================
+2. USAGE				*jqx-usage*
+------------------------------------------------------------------------------
+
+Two commands are exposed to the user: `JqxList` and `JqxQuery`.
+
+  JqxList       *JqxList*
+
+	Open a json file and execute `JqxList`: the json is prettified and
+	the quickfix window is populated with the first level keys.
+	In the quickfix window press `X` on a key to query its values
+  and show the results in a floating window; alternatively <CR> takes
+  you to its location in the file. All other quickfix commands are left intact,
+  so you can navigate it as you normally would, say with `cnext/cprevious` and so forth.
+
+  JqxQuery       *JqxQuery*
+
+  To execute more complicated queries for nested keys `nvim-jqx` exposes
+  the command `JqxQuery`. The grammar is identical to the one you would use to
+  query json files via `jq`; for example
+
+>
+  # example of jq grammar
+  jq '.first_key[1].second_key' file.json
+
+  # equivalent JqxQuery grammar
+  :JqxQuery first_key[1].second_key
+<
+
+  `JqxQuery` can be used in line or as a prompt:
+
+>
+  # inline
+  :JqxQuery <query>
+
+  # prompt
+  :JqxQuery<CR>
+  enter query: <query>
+<
+
+  Commands              *jqx-commands*
+  The full list of commands that the plugin provides is the below:
+
+>
+  `JqxList` populates the quickfix window with json keys
+  `X` on a key, in the quickfix window, to query the corresponding json value
+  `<Esc>` to close the floating window
+  `<CR>` on a key, in the quickfix window, to go to its location in the file
+  `JqxQuery` to prompt for a generic `jq` query
+<
+
+  The same commands described above work on yaml files as well. However, `yq`
+  is required: https://github.com/mikefarah/yq
+
+==============================================================================
+3. CUSTOMISATION        *jqx-customisation*
+
+  If you prefer key-mappings rather than commands simply bind
+  `nmap ... <Plug>JqxList` to access `JqxList`.
+
+  There is no interface exposed for `JqxQuery`, so you
+  would do `nnoremap ... <cmd> JqxQuery` .
+
+  The default key to open a query in floating window is `X`: you can ovverride it with
+  `lua require('nvim-jqx.config').query_key = ...`
+
+vim:ft=help:et:ts=2:sw=2:sts=2:norl
+
