@@ -6,9 +6,7 @@ Install it using your favourite plugin manager; for instance if you are using vi
 ```
 Plug 'gennaro-tedesco/nvim-jqx'
 ```
-We recommend to use the latest neovim [nightly build](https://github.com/neovim/neovim/releases/tag/nightly), as some lua options may not work otherwise.
-
-`jq` is a prerequisite, as this plugin executes `jq` queries internally.
+We recommend using the latest neovim [nightly build](https://github.com/neovim/neovim/releases/tag/nightly), as some lua options may not work otherwise. `jq` is a prerequisite, as this plugin executes `jq` queries internally.
 
 ## Usage
 `nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.
@@ -41,7 +39,7 @@ Default commands
 
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
-## Yaml files
+### Yaml files
 `JqxList` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). Try it out directly with `nvim examples/test.yaml -c JqxList`.
 
 ## Customisation
