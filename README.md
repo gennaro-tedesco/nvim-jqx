@@ -39,6 +39,8 @@ Default commands
 
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
+For more in-depth description and explanations check the documentation `:h nvim-jqx` and links therein.
+
 ### Yaml files
 `nvim-jqx` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). Try it out directly with `nvim examples/test.yaml -c JqxList`, or execute `JqxQuery` on a `yaml` file.
 
