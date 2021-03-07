@@ -56,107 +56,60 @@ Two commands are exposed to the user: `JqxList` and `JqxQuery`.
 
 	Open a json file and execute `JqxList`: the json is prettified and
 	the quickfix window is populated with the first level keys.
-	Press `X` on a key to query its values and show the results in a floating window;
-	alternatively <CR> takes you to its location in the file. All other quickfix commands
-	are left intact, so you can navigate it as you normally would, say with `cnext/cprevious`
-	and so forth.
+	In the quickfix window press `X` on a key to query its values
+  and show the results in a floating window; alternatively <CR> takes
+  you to its location in the file. All other quickfix commands are left intact,
+  so you can navigate it as you normally would, say with `cnext/cprevious` and so forth.
 
   JqxQuery       *JqxQuery*
 
-  To execute more complicated queries for nested keys `nvim-jqx` exposes 
-  the command `JqxQuery`. The grammar is identical to the one you would use to 
-  query json files via `jq`; for example 
+  To execute more complicated queries for nested keys `nvim-jqx` exposes
+  the command `JqxQuery`. The grammar is identical to the one you would use to
+  query json files via `jq`; for example
 
 >
   # example of jq grammar
-  jq '.first_key[1].second_key' file.json 
+  jq '.first_key[1].second_key' file.json
 
-  # equivalent JqxQuery grammar 
+  # equivalent JqxQuery grammar
   :JqxQuery first_key[1].second_key
 <
 
+  `JqxQuery` can be used in line or as a prompt:
+
 >
-	"" open jqx window
-	<Esc> close jqx window
-	<any character> select and copy text from the corresponding " register
-  <C-j>, <C-k> to scroll the list up and down
-  <Up>, <Down> jump to next register section
+  # inline
+  :JqxQuery <query>
+
+  # prompt
+  :JqxQuery<CR>
+  enter query: <query>
 <
-  The register sections Numerical, Literal and Special have marks set
-  accordingly as `'n, 'l, 's`, so you may jump using those too. Notice that since
-  characters keystrokes copy the text from the corresponding register, the jqx
-  window does not obey the standard vim motion commands.
 
-	To change key mapping to open the jqx window specify use the option
-	`let g:jqx_open = ...`
+  The full list of commands that the plugin provides is the below:
 
-    <Plug>jqxPasteBefore       *PeekupPasteBefore*
-  Interface to `:lua require('nvim-jqx').peekup_open('P')`
+>
+  `JqxList` populates the quickfix window with json keys
+  `X` on a key, in the quickfix window, to query the corresponding json value
+  `<Esc>` to close the floating window
+  `<CR>` on a key, in the quickfix window, to go to its location in the file
+  `JqxQuery` to prompt for a generic `jq` query
+<
 
-    <Plug>jqxPasteAfter       *PeekupPasteAfter*
-  Interface to `:lua require('nvim-jqx').peekup_open('p')`
-
-  The `jqx_open()` function also accepts an additional argument that allows
-  to skip manually pasting altogether and directly puts before or after the
-  current cursor position. If you like such behaviour use the options
-  that are mapped to such interfaces:
-
-  `let g:jqx_paste_before = '<leader>P'`
-  `let g:jqx_paste_after = '<leader>p'`
-
-
-------------------------------------------------------------------------------
-    2b. USAGE         *jqx-usage*
-
-	Open the jqx window with `""`. Registers are listed, ordered by type
-	and character. Jump to the next registers section with `<Up>, <Down>'`.
-  Exit the window with `<Esc>`.
-
-	To select the content of the desired register use the corresponding character;
-	for example to select the content of the register `"a` simply press `a` while
-	in the jqx window. Once so, visual confirmation of the selected text appears.
-	The jqx window closes automatically (after a short delay) and the selected
-	text is available for copy `p` (by being passed from the original register to
-	the default register now).
-
-  If you have mapped
-
-  `let g:jqx_paste_before = '<leader>P'`
-  `let g:jqx_paste_after = '<leader>p'`
-
-  the text is automatically put before or after the current cursor position
-  with no need to have to issue `p` in the initial buffer.
+  The same commands described above work on yaml files as well. However, `yq`
+  is required: https://github.com/mikefarah/yq
 
 ==============================================================================
 3. CUSTOMISATION        *jqx-customisation*
 
-	The look and the behaviour of the registers floating window is fully customisable.
-	In order to do so simply override the dictionary configuration entries with
->
-	" geometry configuration
-	lua require('nvim-jqx.config').geometry["height"] = 0.8
-	lua require('nvim-jqx.config').geometry["title"] = 'An awesome window title'
-<
-	`width` and `height` are to be expressed as ratios of the entire window size, therefore 0 < x < 1.
->
-	" behaviour of the jqx window on keystroke
-	lua require('nvim-jqx.config').on_keystroke["delay"] = '300ms'
-	lua require('nvim-jqx.config').on_keystroke["autoclose"] = false
-  lua require('nvim-jqx.config').geometry["wrap"] = false
-<
-	`delay` expresses the delay before the jqx window closes automatically,
-	after selecting the register. Obviously, `autoclose` set to false prevents
-	such behaviour (and the user must close the window manually).
-	`delay` can be set to the empty string to not delay at all, i.e.:
->
-	lua require('nvim-jqx.config').on_keystroke["delay"] = ''
-<
-	To change default mapping to open the jqx window use
-	`let g:jqx_open = '<leader>"'`
+  If you prefer key-mappings rather than commands simply bind
+  `nmap ... <Plug>JqxList` to access `JqxList`.
 
-	To change the default register the selected paste goes into (default: `*`):
-	" put selection into " register instead:
-	`lua require('nvim-jqx.config').on_keystroke["paste_reg"] = '"'`
+  There is no interface exposed for `JqxQuery`, so you
+  would do `nnoremap ... <cmd> JqxQuery` .
+
+  The default key to open a query in floating window is `X`: you can ovverride it with
+  `lua require('nvim-jqx.config').query_key = ...`
+
 vim:ft=help:et:ts=2:sw=2:sts=2:norl
-
 
