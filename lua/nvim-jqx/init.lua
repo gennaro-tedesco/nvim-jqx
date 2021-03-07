@@ -1,7 +1,9 @@
--- this module exposes the main interface
+--[[ this module exposes the main interface and
+user commands that are defined in /plugin/nvim-jqx.vim ]]
 
 local jqx = require("nvim-jqx.jqx")
 local config = require("nvim-jqx.config")
+local fw = require("nvim-jqx.floating")
 
 local function set_qf_maps(ft)
    vim.api.nvim_exec([[autocmd FileType qf nnoremap <buffer> ]]..config.query_key..[[ :lua require("nvim-jqx.jqx").on_keystroke("]]..ft..[[")<CR> ]], false)
@@ -27,6 +29,34 @@ local function jqx_open()
    jqx.populate_qf(ft)
 end
 
+local function query_jq(q)
+   local ft = vim.bo.filetype
+
+   -- reads the query from user input
+   vim.fn.inputsave()
+   local input_query = q=='' and vim.fn.input('enter query: ') or q
+   if input_query == '' then vim.cmd('redraw'); print(' '); return nil end
+   local cur_file = vim.fn.getreg("%")
+   local user_query = ft=='json' and "jq \'."..input_query.."\' "..cur_file or "yq eval \'."..input_query.."\' "..cur_file
+   vim.fn.inputrestore()
+
+   -- parsing query results
+   local query_results = {}
+   for s in vim.fn.system(user_query):gmatch("[^\r\n]+") do
+	  table.insert(query_results, s)
+   end
+   vim.cmd('redraw')
+   print(' ')
+   local floating_buf = fw.floating_window(config.geometry)
+
+   table.insert(query_results, 1, fw.centre_string(user_query))
+   table.insert(query_results, 2, '')
+   vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, query_results)
+   fw.set_fw_opts(floating_buf, ft)
+   vim.cmd('execute "normal! gg"')
+end
+
 return {
    jqx_open = jqx_open,
+   query_jq = query_jq,
 }
