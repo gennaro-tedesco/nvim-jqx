@@ -70,9 +70,9 @@ local function on_keystroke(ft)
    vim.cmd('execute "normal! gg"')
 end
 
-local function query_jq()
+local function query_jq(s)
    vim.fn.inputsave()
-   local input_query = vim.fn.input('enter jq query: ')
+   local input_query = s=='' and vim.fn.input('enter jq query: ') or s
    if input_query == '' then vim.cmd('redraw'); print(' '); return nil end
    local cur_file = vim.fn.getreg("%")
    local jq_query = 'jq \".'..input_query..'\" '..cur_file
