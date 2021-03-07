@@ -5,32 +5,39 @@ local jqx = require("nvim-jqx.jqx")
 local config = require("nvim-jqx.config")
 local fw = require("nvim-jqx.floating")
 
+local function is_valid_ft(ft)
+   if not (ft == 'json' or ft == 'yaml') then
+	  print('only json or yaml files')
+	  return false
+   end
+
+   if ft == 'json' then
+	  if vim.fn.executable("jq") == 0 then print("please install jq"); return false end
+   end
+
+   if ft == 'yaml' then
+	  if vim.fn.executable("yq") == 0 then print("please install yq"); return false end
+   end
+
+   return true
+end
+
 local function set_qf_maps(ft)
    vim.api.nvim_exec([[autocmd FileType qf nnoremap <buffer> ]]..config.query_key..[[ :lua require("nvim-jqx.jqx").on_keystroke("]]..ft..[[")<CR> ]], false)
 end
 
 local function jqx_open()
    local ft = vim.bo.filetype
-   if not (ft == 'json' or ft == 'yaml') then
-	  print('only json or yaml files')
-	  return nil
-   end
-
-   if ft == 'json' then
-	  if vim.fn.executable("jq") == 0 then print("please install jq"); return nil end
-   end
-
-   if ft == 'yaml' then
-	  if vim.fn.executable("yq") == 0 then print("please install yq"); return nil end
-   end
-
+   if not is_valid_ft(ft) then return nil end
    if ft == 'json' then vim.cmd('%! jq .') end
+
    set_qf_maps(ft)
    jqx.populate_qf(ft)
 end
 
 local function query_jq(q)
    local ft = vim.bo.filetype
+   if not is_valid_ft(ft) then return nil end
 
    -- reads the query from user input
    vim.fn.inputsave()
