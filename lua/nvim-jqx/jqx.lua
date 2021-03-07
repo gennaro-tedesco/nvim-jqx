@@ -66,35 +66,12 @@ local function on_keystroke(ft)
    table.insert(results, 1, fw.centre_string(key))
    table.insert(results, 2, '')
    vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, results)
-   fw.set_json_opts(floating_buf)
-   vim.cmd('execute "normal! gg"')
-end
-
-local function query_jq(s)
-   vim.fn.inputsave()
-   local input_query = s=='' and vim.fn.input('enter jq query: ') or s
-   if input_query == '' then vim.cmd('redraw'); print(' '); return nil end
-   local cur_file = vim.fn.getreg("%")
-   local jq_query = 'jq \".'..input_query..'\" '..cur_file
-   vim.fn.inputrestore()
-   local query_results = {}
-   for s in vim.fn.system(jq_query):gmatch("[^\r\n]+") do
-	  table.insert(query_results, s)
-   end
-   vim.cmd('redraw')
-   print(' ')
-   local floating_buf = fw.floating_window(config.geometry)
-
-   table.insert(query_results, 1, fw.centre_string(jq_query))
-   table.insert(query_results, 2, '')
-   vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, query_results)
-   fw.set_json_opts(floating_buf)
+   fw.set_fw_opts(floating_buf, ft)
    vim.cmd('execute "normal! gg"')
 end
 
 return {
    populate_qf = populate_qf,
    on_keystroke = on_keystroke,
-   query_jq = query_jq,
 }
 
