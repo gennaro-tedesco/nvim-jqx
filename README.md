@@ -10,12 +10,12 @@ We recommend using the latest neovim [nightly build](https://github.com/neovim/n
 
 ## Usage
 `nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.
-
 Open a json file and issue `JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
 
 ![](examples/demo.gif)
 
-To execute more complicated and generic `jq` commands use `JqxQuery` instead. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json`:
+To execute more complicated and generic `jq` commands use `JqxQuery` instead; the prompt helps autocomplete with the file keys for easy typing. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json` as shown below
+
 ```
 # JqxQuery grammar
 JqxQuery friends[2].name
