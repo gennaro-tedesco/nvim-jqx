@@ -75,7 +75,8 @@ Two commands are exposed to the user: `JqxList` and `JqxQuery`.
   :JqxQuery first_key[1].second_key
 <
 
-  `JqxQuery` can be used in line or as a prompt:
+  `JqxQuery` can be used in line or as a prompt: in the latter case
+  autocompletion with the json file keys is made available on the prompt.
 
 >
   # inline
