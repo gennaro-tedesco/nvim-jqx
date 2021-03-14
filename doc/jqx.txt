@@ -77,6 +77,8 @@ Two commands are exposed to the user: `JqxList` and `JqxQuery`.
 
   `JqxQuery` can be used in line or as a prompt: in the latter case
   autocompletion with the json file keys is made available on the prompt.
+  Notice that you would need to escape possible double quotes `"` for them to be
+  correctly parsed. For instance `JqxQuery \"first.second\"` .
 
 >
   # inline
