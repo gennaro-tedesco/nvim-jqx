@@ -19,11 +19,9 @@ local function populate_qf(ft)
    local cmd_lines = {}
    local cur_file = vim.fn.getreg("%")
    if ft == 'json' then
-	  for s in vim.fn.system("jq 'keys' "..cur_file):gmatch("[^\r\n]+") do
-		 if not (string.find(s, '%[') or string.find(s, '%]')) then
-			local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
-			table.insert(cmd_lines, key)
-		 end
+	  for s in vim.fn.system("jq 'keys[]' "..cur_file):gmatch("[^\r\n]+") do
+		 local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
+		 table.insert(cmd_lines, key)
 	  end
    elseif ft == 'yaml' then
 	  for s in vim.fn.system("yq eval 'keys' "..cur_file):gmatch("[^\r\n]+") do
