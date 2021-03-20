@@ -9,12 +9,12 @@
 
 <h4 align="center">Populate the quickfix with jq entries</h4>
 
-<h2 align="center">
+<h3 align="center">
   <a href="#Installation">Installation</a> •
   <a href="#Usage">Usage</a> •
   <a href="#Customisation">Customisation</a> •
   <a href="#Feedback">Feedback</a>
-</h2>
+</h3>
 
 If only one could easily browse and preview json files in neovim. Oh wait, `nvim-jqx` does just that!
 
