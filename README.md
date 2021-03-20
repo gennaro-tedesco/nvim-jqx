@@ -2,19 +2,19 @@
   nvim-jqx
 </h1>
 
-<p align="center">
-  <img alt="PR" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"/>
-  <img alt="Lua" src="https://img.shields.io/badge/lua-%232C2D72.svg?&style=for-the-badge&logo=lua&logoColor=white"/>
-</p>
+<h2="center">
+  <img alt="PR" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
+  <img alt="Lua" src="https://img.shields.io/badge/lua-%232C2D72.svg?&style=flat&logo=lua&logoColor=white"/>
+</h2>
 
 <h4 align="center">Populate the quickfix with jq entries</h4>
 
-<p align="center">
+<h2 align="center">
   <a href="#Installation">Installation</a> •
   <a href="#Usage">Usage</a> •
   <a href="#Customisation">Customisation</a> •
   <a href="#Feedback">Feedback</a>
-</p>
+</h2>
 
 If only one could easily browse and preview json files in neovim. Oh wait, `nvim-jqx` does just that!
 
