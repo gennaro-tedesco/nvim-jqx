@@ -2,7 +2,7 @@
   nvim-jqx
 </h1>
 
-<h2="center">
+<h2 align="center">
   <img alt="PR" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
   <img alt="Lua" src="https://img.shields.io/badge/lua-%232C2D72.svg?&style=flat&logo=lua&logoColor=white"/>
 </h2>
