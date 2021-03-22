@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img width="400" height="300" src="examples/logo.png">
+  <img width="350" height="300" src="examples/logo.png">
   <br>
   nvim-jqx
   <br>
