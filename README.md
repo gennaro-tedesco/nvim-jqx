@@ -1,5 +1,9 @@
 <h1 align="center">
+  <br>
+  <img width="350" height="300" src="examples/logo.png">
+  <br>
   nvim-jqx
+  <br>
 </h1>
 
 <h2 align="center">
