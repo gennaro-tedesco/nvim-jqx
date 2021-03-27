@@ -1,6 +1,16 @@
 local fw = require("nvim-jqx.floating")
 local config = require("nvim-jqx.config")
 
+local function has_value(tab, val)
+    for _, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+    return false
+end
+
+
 local function get_key_location(key, ft)
    if ft == 'json' then
 	  return {
@@ -15,14 +25,23 @@ local function get_key_location(key, ft)
    end
 end
 
-local function populate_qf(ft)
+local function populate_qf(ft, type)
    local cmd_lines = {}
    local cur_file = vim.fn.getreg("%")
    if ft == 'json' then
-	  for s in vim.fn.system("jq 'keys[]' "..cur_file):gmatch("[^\r\n]+") do
-		 local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
-		 table.insert(cmd_lines, key)
+	  local json_types = {'string', 'number', 'boolean', 'array', 'object', 'null'}
+	  if has_value(json_types, type) then
+		 for s in vim.fn.system("jq -c 'to_entries[] | if (.value|type == \""..type.."\") then .key else empty end' "..cur_file):gmatch("[^\r\n]+") do
+			local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
+			table.insert(cmd_lines, key)
+		 end
+	  else
+		 for s in vim.fn.system("jq 'keys[]' "..cur_file):gmatch("[^\r\n]+") do
+			local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
+			table.insert(cmd_lines, key)
+		 end
 	  end
+
    elseif ft == 'yaml' then
 	  for s in vim.fn.system("yq eval 'keys' "..cur_file):gmatch("[^\r\n]+") do
 		 local key = s:gsub('^-%s+', '')
