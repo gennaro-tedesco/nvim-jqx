@@ -3,9 +3,15 @@ if exists("g:loaded_jqx")
 endif
 
 nnoremap <Plug>JqxList :lua require('nvim-jqx').jqx_open()<CR>
-command! -nargs=? JqxList execute 'lua require("nvim-jqx").jqx_open("'..<q-args>..'")'
+command! -complete=customlist,TypeKeys -nargs=? JqxList execute 'lua require("nvim-jqx").jqx_open("'..<q-args>..'")'
 
 command! -complete=customlist,FileKeys -nargs=? JqxQuery execute 'lua require("nvim-jqx").query_jq("'..<q-args>..'")<CR>'
+
+function! TypeKeys(A, L, P) abort
+	if &filetype ==# 'json'
+		return ['string', 'number', 'boolean', 'array', 'object', 'null']
+	endif
+endfunction
 
 function! FileKeys(A, L, P) abort
 	if &filetype ==# 'json'
