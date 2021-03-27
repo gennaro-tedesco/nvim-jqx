@@ -3,7 +3,7 @@ if exists("g:loaded_jqx")
 endif
 
 nnoremap <Plug>JqxList :lua require('nvim-jqx').jqx_open()<CR>
-command! JqxList execute 'lua require("nvim-jqx").jqx_open()<CR>'
+command! -nargs=? JqxList execute 'lua require("nvim-jqx").jqx_open("'..<q-args>..'")'
 
 command! -complete=customlist,FileKeys -nargs=? JqxQuery execute 'lua require("nvim-jqx").query_jq("'..<q-args>..'")<CR>'
 
