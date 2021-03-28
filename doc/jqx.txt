@@ -60,6 +60,22 @@ Two commands are exposed to the user: `JqxList` and `JqxQuery`.
   you to its location in the file. All other quickfix commands are left intact,
   so you can navigate it as you normally would, say with `cnext/cprevious` and so forth.
 
+  `JqxList` accepts an optional argument representing the json type of the
+  values you want to populate. For example `JqxList number` only populates the
+  quickfix window with keys whose values are numerical: the available types
+  are
+
+  `JqxList number`
+  `JqxList string`
+  `JqxList boolean`
+  `JqxList array`
+  `JqxList object`
+  `JqxList null`
+
+  You can use autocompletion and the available types will prompt up directly
+  for selection.
+
+
   JqxQuery       *JqxQuery*
 
   To execute more complicated queries for nested keys `nvim-jqx` exposes
