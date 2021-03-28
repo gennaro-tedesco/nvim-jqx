@@ -11,7 +11,7 @@
   <img alt="Lua" src="https://img.shields.io/badge/lua-%232C2D72.svg?&style=flat&logo=lua&logoColor=white"/>
 </h2>
 
-<h4 align="center">Populate the quickfix with jq entries</h4>
+<h4 align="center">Populate the quickfix with json entries</h4>
 
 <h3 align="center">
   <a href="#Installation">Installation</a> •
@@ -35,6 +35,8 @@ Open a json file and issue `JqxList`: the json is prettified and the quickfix wi
 
 ![](examples/demo.gif)
 
+`JqxList` also accepts an optional argument representing the json type you want to subselect: for example `JqxList number` populates the quickfix with entries of type number only, so do `JqxList string`, `JqxList boolean` and so forth, respectively: this is quite useful for big files where you want to have a quick peek at, say, some numerical values only or similar. For a full list of available types see `h: jqx-usage` or simply hit `<Tab>` to show the autocomplete for available types.
+
 To execute more complicated and generic `jq` commands use `JqxQuery` instead; the prompt helps autocomplete with the file keys for easy typing. Open a json file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq ".<my-query>" test.json` as shown below
 
 ```
@@ -50,13 +52,14 @@ jq '.friends[2].name' test.json
 
 Default commands
 
-| command     | description
-|:----------- |:-------------
-|`JqxList`    | populate the quickfix window with json keys
-|`JqxQuery`   | executes a generic `jq` query in the current file
-|`<CR>`       | go to key location in file
-|X            | query values of key under cursor
-|`<Esc>`      | close floating window
+| command            | description
+|:------------------ |:-------------
+|`JqxList`           | populate the quickfix window with json keys
+|`JqxList string`    | populate the quickfix window with string values
+|`JqxQuery`          | executes a generic `jq` query in the current file
+|`<CR>`              | go to key location in file
+|X                   | query values of key under cursor
+|`<Esc>`             | close floating window
 
 Try it out directly with `nvim examples/test.json -c JqxList`.
 

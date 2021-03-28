@@ -26,13 +26,13 @@ local function set_qf_maps(ft)
    vim.api.nvim_exec([[autocmd FileType qf nnoremap <buffer> ]]..config.query_key..[[ :lua require("nvim-jqx.jqx").on_keystroke("]]..ft..[[")<CR> ]], false)
 end
 
-local function jqx_open()
+local function jqx_open(type)
    local ft = vim.bo.filetype
    if not is_valid_ft(ft) then return nil end
    if ft == 'json' then vim.cmd('%! jq .') end
 
    set_qf_maps(ft)
-   jqx.populate_qf(ft)
+   jqx.populate_qf(ft, type)
 end
 
 local function query_jq(q)
