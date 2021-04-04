@@ -33,7 +33,7 @@ We recommend using the latest neovim [nightly build](https://github.com/neovim/n
 `nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.
 Open a json file and issue `JqxList`: the json is prettified and the quickfix window is populated with the first level keys. Press `X` on a key to query its values and show the results in a floating window; alternatively `<CR>` takes you to its location in the file.
 
-![](examples/demo.gif)
+![JqxListdemo](https://user-images.githubusercontent.com/15387611/113495463-4bd24500-94f2-11eb-88b5-64c1ee965886.gif)
 
 `JqxList` also accepts an optional argument representing the json type you want to subselect: for example `JqxList number` populates the quickfix with entries of type number only, so do `JqxList string`, `JqxList boolean` and so forth, respectively: this is quite useful for big files where you want to have a quick peek at, say, some numerical values only or similar. For a full list of available types see `h: jqx-usage` or simply hit `<Tab>` to show the autocomplete for available types.
 
@@ -48,7 +48,7 @@ JqxQuery friends[2].name
 jq '.friends[2].name' test.json
 "Michael Marquez"
 ```
-![](examples/querydemo.gif)
+![JqxQuerydemo](https://user-images.githubusercontent.com/15387611/113495732-ab7d2000-94f3-11eb-8781-0497771b60a1.gif)
 
 Default commands
 
