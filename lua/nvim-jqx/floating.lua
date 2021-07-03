@@ -49,12 +49,7 @@ local function floating_window(geometry)
    return buf
 end
 
-local function set_fw_opts(buf, ft)
-   if ft == 'json' then
-	  vim.api.nvim_buf_set_option(buf, 'filetype', 'json')
-   elseif ft == 'yaml' then
-	  vim.api.nvim_buf_set_option(buf, 'filetype', 'yaml')
-   end
+local function set_fw_opts(buf)
    vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
    vim.api.nvim_buf_set_option(buf, 'modifiable', false)
    vim.api.nvim_buf_set_option(buf, 'readonly', true)

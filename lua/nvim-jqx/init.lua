@@ -59,7 +59,7 @@ local function query_jq(q)
    table.insert(query_results, 1, fw.centre_string(user_query))
    table.insert(query_results, 2, '')
    vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, query_results)
-   fw.set_fw_opts(floating_buf, ft)
+   fw.set_fw_opts(floating_buf)
    vim.cmd('execute "normal! gg"')
 end
 
