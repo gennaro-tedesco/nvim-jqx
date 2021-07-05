@@ -27,7 +27,7 @@ Install it using your favourite plugin manager; for instance if you are using vi
 ```
 Plug 'gennaro-tedesco/nvim-jqx'
 ```
-We recommend using the latest neovim [nightly build](https://github.com/neovim/neovim/releases/tag/nightly), as some lua options may not work otherwise. `jq` is a prerequisite, as this plugin executes `jq` queries internally.
+Notice that `jq` is a prerequisite, as this plugin executes `jq` queries internally.
 
 ## Usage
 `nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.
