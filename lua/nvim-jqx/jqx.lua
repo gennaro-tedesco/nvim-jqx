@@ -25,7 +25,7 @@ local function get_key_location(key, ft)
    end
 end
 
-local function populate_qf(ft, type)
+local function populate_qf(ft, type, sort)
    local cmd_lines = {}
    local cur_file = vim.fn.getreg("%")
    if ft == 'json' then
@@ -36,7 +36,8 @@ local function populate_qf(ft, type)
 			table.insert(cmd_lines, key)
 		 end
 	  else
-		 for s in vim.fn.system("jq 'keys[]' "..cur_file):gmatch("[^\r\n]+") do
+		 local get_keys = sort and "jq 'keys[]' "..cur_file or "jq 'keys_unsorted[]' "..cur_file
+		 for s in vim.fn.system(get_keys):gmatch("[^\r\n]+") do
 			local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
 			table.insert(cmd_lines, key)
 		 end

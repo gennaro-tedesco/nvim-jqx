@@ -32,7 +32,7 @@ local function jqx_open(type)
    if ft == 'json' then vim.cmd('%! jq .') end
 
    set_qf_maps(ft)
-   jqx.populate_qf(ft, type)
+   jqx.populate_qf(ft, type, config.sort)
 end
 
 local function query_jq(q)

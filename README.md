@@ -73,6 +73,10 @@ If you prefer key-mappings rather than commands simply bind
 ```
 nmap ... <Plug>JqxList
 ```
+The list of json keys is sorted alphabetically in the quickfix window: if instead you prefer having it in the same order as they appear in the original file, override the default configuration with (notice it requires `jq >= 1.5`)
+```
+lua require('nvim-jqx.config').sort = false
+```
 The default key to open a query in floating window is `X`: you can ovverride it with
 ```
 lua require('nvim-jqx.config').query_key = ...

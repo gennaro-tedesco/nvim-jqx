@@ -6,7 +6,10 @@ local geometry = {
 
 local query_key = 'X'
 
+local sort = false
+
 return {
    geometry = geometry,
    query_key = query_key,
+   sort = sort,
 }
