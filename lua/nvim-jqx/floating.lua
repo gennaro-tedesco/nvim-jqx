@@ -53,7 +53,7 @@ local function set_fw_opts(buf)
    vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
    vim.api.nvim_buf_set_option(buf, 'modifiable', false)
    vim.api.nvim_buf_set_option(buf, 'readonly', true)
-   vim.api.nvim_buf_set_keymap(buf, 'n', '<ESC>', ':q<CR> <C-w>j', { nowait = true, noremap = true, silent = true })
+   vim.api.nvim_buf_set_keymap(buf, 'n', config.close_window_key, ':q<CR> <C-w>j', { nowait = true, noremap = true, silent = true })
 end
 
 return {
