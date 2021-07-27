@@ -81,6 +81,10 @@ The default key to open a query in floating window is `X`: you can ovverride it 
 ```
 lua require('nvim-jqx.config').query_key = ...
 ```
+The default key to close the floating window is `<ESC>`: you can ovverride it with
+```
+lua require('nvim-jqx.config').close_window_key = ...
+```
 
 ## Feedback
 If you find this plugin useful consider awarding it a ⭐, it is a great way to give feedback! Otherwise, any additional suggestions or merge request is warmly welcome!
