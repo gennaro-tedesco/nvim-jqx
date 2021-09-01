@@ -27,9 +27,9 @@ end
 
 local function populate_qf(ft, type, sort)
    local cmd_lines = {}
-   local cur_file = vim.fn.getreg("%")
+   local cur_file = string.format([["%s"]], vim.fn.getreg("%"))
    if ft == 'json' then
-	  local json_types = {'string', 'number', 'boolean', 'array', 'object', 'null'}
+	  local json_types = {'string', 'number', 'vim.fn.getreg("%")boolean', 'array', 'object', 'null'}
 	  if has_value(json_types, type) then
 		 for s in vim.fn.system("jq -c 'to_entries[] | if (.value|type == \""..type.."\") then .key else empty end' "..cur_file):gmatch("[^\r\n]+") do
 			local key = s:gsub('%"', ''):gsub('^%s*(.-)%s*$','%1'):gsub(',','')
