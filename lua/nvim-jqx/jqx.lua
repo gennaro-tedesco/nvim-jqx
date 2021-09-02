@@ -27,6 +27,7 @@ end
 
 local function populate_qf(ft, type, sort)
    local cmd_lines = {}
+   -- Add quotes to filepaths to account for filenames with spaces
    local cur_file = string.format([["%s"]], vim.fn.getreg("%"))
    if ft == 'json' then
 	  local json_types = {'string', 'number', 'boolean', 'array', 'object', 'null'}
@@ -52,7 +53,9 @@ local function populate_qf(ft, type, sort)
 
    local qf_list = {}
    for _, v in pairs(cmd_lines) do
-	  table.insert(qf_list, {filename = cur_file, lnum = get_key_location(v, ft).row, col = get_key_location(v, ft).col, text = v})
+    -- Cannot reuse variable `cur_file`, quoted filename is not recognized
+    -- Must explicitly resuse register "%"
+	  table.insert(qf_list, {filename = vim.fn.getreg("%"), lnum = get_key_location(v, ft).row, col = get_key_location(v, ft).col, text = v})
    end
 
    vim.fn.setqflist(qf_list, ' ')
