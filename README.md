@@ -85,6 +85,10 @@ The default key to close the floating window is `<ESC>`: you can ovverride it wi
 ```
 lua require('nvim-jqx.config').close_window_key = ...
 ```
+If instead of populating the quickfix window you had rather use the location list, override
+```
+require('nvim-jqx.config').use_quickfix = false
+```
 
 ## Feedback
 If you find this plugin useful consider awarding it a ⭐, it is a great way to give feedback! Otherwise, any additional suggestions or merge request is warmly welcome!

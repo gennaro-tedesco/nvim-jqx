@@ -139,6 +139,8 @@ Two commands are exposed to the user: `JqxList` and `JqxQuery`.
   The default key to close the floating window is `<ESC>`: you can ovverride it with
   `lua require('nvim-jqx.config').close_window_key = ...`
 
+  To populate the location list rather than the quickfix list ovverride
+  `require('nvim-jqx.config').use_quickfix = false`
 
 vim:ft=help:et:ts=2:sw=2:sts=2:norl
 

@@ -10,9 +10,12 @@ local sort = true
 
 local close_window_key = '<ESC>'
 
+local use_quickfix = true
+
 return {
    geometry = geometry,
    query_key = query_key,
    sort = sort,
-   close_window_key = close_window_key
+   close_window_key = close_window_key,
+   use_quickfix = use_quickfix,
 }

@@ -55,8 +55,13 @@ local function populate_qf(ft, type, sort)
 	  table.insert(qf_list, {filename = cur_file, lnum = get_key_location(v, ft).row, col = get_key_location(v, ft).col, text = v})
    end
 
-   vim.fn.setqflist(qf_list, ' ')
-   vim.cmd('copen')
+   if config.use_quickfix then
+	  vim.fn.setqflist(qf_list, ' ')
+	  vim.cmd('copen')
+   else
+	  vim.fn.setloclist(0, qf_list, ' ')
+	  vim.cmd('lopen')
+   end
 end
 
 local function parse_jq_query(key, cur_file, ft)
