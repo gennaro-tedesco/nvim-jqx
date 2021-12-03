@@ -89,6 +89,13 @@ If instead of populating the quickfix window you had rather use the location lis
 ```
 require('nvim-jqx.config').use_quickfix = false
 ```
+Why not automatically formatting your `json` files as you open them? Set up the autogroup
+```
+augroup JQXLIST
+	autocmd! * <buffer>
+	autocmd! BufWinEnter *.json :JqxList<CR>
+augroup END
+```
 
 ## Feedback
 If you find this plugin useful consider awarding it a ⭐, it is a great way to give feedback! Otherwise, any additional suggestions or merge request is warmly welcome!
