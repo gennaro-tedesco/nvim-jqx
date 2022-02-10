@@ -14,8 +14,8 @@ end
 local function get_key_location(key, ft)
    if ft == 'json' then
 	  return {
-		 row = vim.api.nvim_exec([[g/^\s*"]]..key..[[/echo line('.')]], true),
-		 col = vim.api.nvim_exec([[g/^\s*"]]..key..[[/execute "normal! ^" | echo col('.')-1]], true)
+		 row = vim.api.nvim_exec([[g/^\s*"]]..key..[["/echo line('.')]], true),
+		 col = vim.api.nvim_exec([[g/^\s*"]]..key..[["/execute "normal! ^" | echo col('.')-1]], true)
 	  }
    elseif ft == 'yaml' then
 	  return {
@@ -89,7 +89,7 @@ local function on_keystroke(ft)
    table.insert(results, 1, fw.centre_string(key))
    table.insert(results, 2, '')
    vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, results)
-   fw.set_fw_opts(floating_buf, ft)
+   fw.set_fw_opts(floating_buf)
    vim.cmd('execute "normal! gg"')
 end
 
