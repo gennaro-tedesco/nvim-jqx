@@ -24,4 +24,17 @@ function! FileKeys(A, L, P) abort
 	return filter(a, 'v:val =~ ''\V\^''.a:A')
 endfunction
 
+augroup JqxAutoClose
+	autocmd!
+	autocmd WinLeave * call s:JqxClose()
+augroup END
+
+function s:JqxClose() abort
+	for i in range(1, winnr('$'))
+        if getbufvar(winbufnr(i), '&filetype') ==? 'jqx'
+			close
+		endif
+    endfor
+endfunction
+
 let g:loaded_jqx = 1
