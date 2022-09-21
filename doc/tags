@@ -1,6 +1,8 @@
-nvim-jqx	jqx.txt	/*nvim-jqx*
+JqxList	jqx.txt	/*JqxList*
+JqxQuery	jqx.txt	/*JqxQuery*
+jqx-commands	jqx.txt	/*jqx-commands*
+jqx-contents	jqx.txt	/*jqx-contents*
+jqx-customisation	jqx.txt	/*jqx-customisation*
 jqx-introduction	jqx.txt	/*jqx-introduction*
 jqx-usage	jqx.txt	/*jqx-usage*
-jqx-commands	jqx.txt	/*jqx-commands*
-jqx-customisation	jqx.txt	/*jqx-customisation*
-
+nvim-jqx	jqx.txt	/*nvim-jqx*
