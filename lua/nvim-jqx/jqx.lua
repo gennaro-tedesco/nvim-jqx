@@ -51,7 +51,7 @@ local function populate_qf(ft, type, sort)
 			end
 		end
 	elseif ft == "yaml" then
-		for s in vim.fn.system("yq eval 'keys' " .. cur_file):gmatch("[^\r\n]+") do
+		for s in vim.fn.system("yq 'keys[]' " .. cur_file):gmatch("[^\r\n]+") do
 			local key = s:gsub("^-%s+", "")
 			table.insert(cmd_lines, key)
 		end
@@ -81,7 +81,7 @@ local function parse_jq_query(key, cur_file, ft)
 			table.insert(parsed_lines, s)
 		end
 	elseif ft == "yaml" then
-		for s in vim.fn.system("yq eval '.\"" .. key .. "\"' " .. cur_file):gmatch("[^\r\n]+") do
+		for s in vim.fn.system("yq '.\"" .. key .. "\"' " .. cur_file):gmatch("[^\r\n]+") do
 			table.insert(parsed_lines, s)
 		end
 	end

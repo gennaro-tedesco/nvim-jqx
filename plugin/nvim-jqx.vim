@@ -18,8 +18,8 @@ function! FileKeys(A, L, P) abort
 		let a = split(system("jq 'keys' " . getreg("%") . " | sed 's/,*$//g' | sed '1d;$d' "), "\n")
 		call map(a, {idx, val -> substitute(trim(val), '\"', '', 'g')})
 	elseif &filetype == 'yaml'
-		let a = split(system("yq eval 'keys' " . getreg("%")), "\n")
-		call map(a, {idx, val -> substitute(trim(val), '-', '', 'g')})
+		let a = split(system("yq 'keys[]' " . getreg("%")), "\n")
+		call map(a, {idx, val -> substitute(trim(val), '\"', '', 'g')})
 	endif
 	return filter(a, 'v:val =~ ''\V\^''.a:A')
 endfunction

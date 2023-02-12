@@ -68,7 +68,7 @@ local function query_jq(q)
 	end
 	local cur_file = vim.fn.getreg("%")
 	local user_query = ft == "json" and "jq '." .. input_query .. "' " .. cur_file
-		or "yq eval '." .. input_query .. "' " .. cur_file
+		or "yq '." .. input_query .. "' " .. cur_file
 	vim.fn.inputrestore()
 
 	-- parsing query results
