@@ -52,7 +52,7 @@ local function populate_qf(ft, type, sort)
 		end
 	elseif ft == "yaml" then
 		for s in vim.fn.system("yq 'keys[]' " .. cur_file):gmatch("[^\r\n]+") do
-			local key = s:gsub("^-%s+", "")
+			local key = s:gsub("^-%s+", ""):gsub('"', "")
 			table.insert(cmd_lines, key)
 		end
 	end
