@@ -27,10 +27,21 @@ If only one could easily browse and preview json files in neovim. Oh wait, `nvim
 
 ## Installation
 
-Install it using your favourite plugin manager; for instance if you are using vim-plug
+Install it using your favourite plugin manager: for instance
 
-```
-Plug 'gennaro-tedesco/nvim-jqx'
+- with [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+```lua
+{
+  "gennaro-tedesco/nvim-jqx",
+  ft = { "json", "yaml" },
+  config = true
+  --[[ to override defaults instead:
+  config = function()
+    require("nvim-jqx.config").use_quickfix = false
+  end,
+  --]]
+},
 ```
 
 Notice that `jq` is a prerequisite, as this plugin executes `jq` queries internally.
