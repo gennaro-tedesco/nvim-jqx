@@ -39,6 +39,7 @@ local function set_fw_opts(buf)
 		":q<CR> <C-w>j",
 		{ nowait = true, noremap = true, silent = true }
 	)
+	vim.treesitter.start(buf, "json")
 end
 
 return {
