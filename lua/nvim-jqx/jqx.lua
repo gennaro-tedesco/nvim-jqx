@@ -77,11 +77,15 @@ end
 local function parse_jq_query(key, cur_file, ft)
 	local parsed_lines = {}
 	if ft == "json" then
-		for s in vim.fn.system("jq '.\"" .. key .. "\"' " .. cur_file):gmatch("[^\r\n]+") do
+		local jq_query = tonumber(key) ~= nil and "jq '.[" .. key .. "]' " .. cur_file
+			or "jq '.\"" .. key .. "\"' " .. cur_file
+
+		for s in vim.fn.system(jq_query):gmatch("[^\r\n]+") do
 			table.insert(parsed_lines, s)
 		end
 	elseif ft == "yaml" then
-		for s in vim.fn.system("yq '.\"" .. key .. "\"' " .. cur_file):gmatch("[^\r\n]+") do
+		local yq_query = "yq '.\"" .. key .. "\"' " .. cur_file
+		for s in vim.fn.system(yq_query):gmatch("[^\r\n]+") do
 			table.insert(parsed_lines, s)
 		end
 	end
