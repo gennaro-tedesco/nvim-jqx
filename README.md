@@ -35,7 +35,6 @@ Install it using your favourite plugin manager: for instance
 {
   "gennaro-tedesco/nvim-jqx",
   ft = { "json", "yaml" },
-  config = true
 },
 ```
 
