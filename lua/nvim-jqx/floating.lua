@@ -18,7 +18,7 @@ local function floating_window(geometry)
 		col = math.ceil(total_width - win_width) / 2,
 		focusable = true,
 		style = "minimal",
-		border = "rounded",
+		border = config.geometry.border,
 	}
 	local buf = vim.api.nvim_create_buf(false, true)
 
