@@ -36,11 +36,6 @@ Install it using your favourite plugin manager: for instance
   "gennaro-tedesco/nvim-jqx",
   ft = { "json", "yaml" },
   config = true
-  --[[ to override defaults instead:
-  config = function()
-    require("nvim-jqx.config").use_quickfix = false
-  end,
-  --]]
 },
 ```
 
@@ -96,37 +91,39 @@ If you prefer key-mappings rather than commands simply bind
 nmap ... <Plug>JqxList
 ```
 
-The list of json keys is sorted alphabetically in the quickfix window: if instead you prefer having it in the same order as they appear in the original file, override the default configuration with (notice it requires `jq >= 1.5`)
+The configurable options are exposed in [nvim-jqx/config.lua](https://github.com/gennaro-tedesco/nvim-jqx/blob/master/lua/nvim-jqx/config.lua) and can be overridden at will. For example, with `lazy.nvim` you can configure them as
 
-```
-lua require('nvim-jqx.config').sort = false
-```
+```lua
+{
+    "gennaro-tedesco/nvim-jqx",
+    ...
+    init = function()
+        local jqx = require("nvim-jqx.config")
+        jqx.geometry.border = "single"
+        jqx.geometry.width = 0.7
+        ...
 
-The default key to open a query in floating window is `X`: you can ovverride it with
-
-```
-lua require('nvim-jqx.config').query_key = ...
-```
-
-The default key to close the floating window is `<ESC>`: you can ovverride it with
-
-```
-lua require('nvim-jqx.config').close_window_key = ...
-```
-
-If instead of populating the quickfix window you had rather use the location list, override
-
-```
-require('nvim-jqx.config').use_quickfix = false
+        jqx.query_key = "X"         -- keypress to query jq on keys
+        jqx.sort = false            -- show the json keys as they appear instead of sorting them alphabetically
+        jqx.show_legend = true      -- show key queried as first line in the jqx floating window
+        jqx.use_quickfix = false    -- if you prefer the location list
+    end,
+}
 ```
 
 Why not automatically formatting your `json` files as you open them? Set up the autogroup
 
-```
-augroup JQXLIST
-	autocmd! * <buffer>
-	autocmd! BufWinEnter *.json :JqxList<CR>
-augroup END
+```lua
+
+local jqx = vim.api.nvim_create_augroup("Jqx", {})
+vim.api.nvim_clear_autocmds({ group = jqx })
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = {".json", ".yaml"},
+	group = jqx,
+	callback = function()
+		vim.cdm.JqxList()
+	end,
+})
 ```
 
 ## Feedback

@@ -102,8 +102,10 @@ local function on_keystroke(ft)
 	local results = parse_jq_query(key, cur_file, ft)
 	local floating_buf = fw.floating_window(config.geometry)
 
-	table.insert(results, 1, fw.centre_string(key))
-	table.insert(results, 2, "")
+	if config.show_legend then
+		table.insert(results, 1, fw.centre_string(key))
+		table.insert(results, 2, "")
+	end
 	vim.api.nvim_buf_set_lines(floating_buf, 0, -1, true, results)
 	fw.set_fw_opts(floating_buf)
 	vim.cmd('execute "normal! gg"')
