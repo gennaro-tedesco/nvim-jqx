@@ -1,59 +1,22 @@
-*jqx.txt*           For Neovim >= 0.8.0          Last change: 2023 February 18
+*jqx.txt*           For Neovim >= 0.8.0          Last change: 2023 February 19
 
 ==============================================================================
 Table of Contents                                      *jqx-table-of-contents*
 
-  - Installation                                            |jqx-installation|
-  - Usage                                                          |jqx-usage|
-  - Customisation                                          |jqx-customisation|
-  - Feedback                                                    |jqx-feedback|
-
-<h1 align="center">
-
-<br>
-<img width="350" height="300" src="examples/logo.png">
-<br>
-nvim-jqx
-<br>
-
-</h1>
-
-<h2 align="center">
-
-<a href="https://luarocks.org/modules/gennaro-tedesco/nvim-jqx">
-<img alt="luarocks" src="https://img.shields.io/luarocks/v/gennaro-tedesco/nvim-jqx?logo=lua&color=2aa198&style=for-the-badge"/>
-</a>
-<a href="https://github.com/gennaro-tedesco/nvim-jqx/releases">
-<img alt="releases" src="https://img.shields.io/github/release/gennaro-tedesco/nvim-jqx?logo=neovim&color=2aa198&style=for-the-badge"/>
-</a>
-
-</h2>
-
-<h4 align="center">
-
-Populate the quickfix with json entries
-
-</h4>
-
-<h3 align="center">
-
-<a href="Installation">Installation</a> •
-<a href="Usage">Usage</a> •
-<a href="Customisation">Customisation</a> •
-<a href="Feedback">Feedback</a>
-
-</h3>
-
-If only one could easily browse and preview json files in neovim. Oh wait,
+  - Installation                                        |jqx-nil-installation|
+  - Usage                                                      |jqx-nil-usage|
+  - Customisation                                      |jqx-nil-customisation|
+  - Feedback                                                |jqx-nil-feedback|
+nvim-jqxPopulate the quickfix with json entriesInstallation •Usage •Customisation •FeedbackIf only one could easily browse and preview json files in neovim. Oh wait,
 `nvim-jqx` does just that!
 
-INSTALLATION                                                *jqx-installation*
+
+INSTALLATION                                            *jqx-nil-installation*
 
 Install it using your favourite plugin manager: for instance
 
 
 - with lazy.nvim <https://github.com/folke/lazy.nvim>
-
 
 >lua
     {
@@ -62,22 +25,17 @@ Install it using your favourite plugin manager: for instance
     },
 <
 
-
 Notice that `jq` is a prerequisite, as this plugin executes `jq` queries
 internally.
 
-USAGE                                                              *jqx-usage*
 
-`nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`. Open a json file and
-issue `JqxList`: the json is prettified and the quickfix window is populated
-with the first level keys. Press `X` on a key to query its values and show the
+USAGE                                                          *jqx-nil-usage*
+
+`nvim-jqx` exposes two commands: `JqxList` and `JqxQuery`.Open a json file and
+issue `JqxList`the json is prettified and the quickfix window is populated with
+the first level keys. Press `X` on a key to query its values and show the
 results in a floating window; alternatively `<CR>` takes you to its location in
 the file.
-
-<div class="figure">
-<img src="https://user-images.githubusercontent.com/15387611/113495463-4bd24500-94f2-11eb-88b5-64c1ee965886.gif" title="fig:"/>
-<p class="caption">JqxListdemo</p>
-</div>
 
 `JqxList` also accepts an optional argument representing the json type you want
 to subselect: for example `JqxList number` populates the quickfix with entries
@@ -89,7 +47,7 @@ autocomplete for available types.
 
 To execute more complicated and generic `jq` commands use `JqxQuery` instead;
 the prompt helps autocomplete with the file keys for easy typing. Open a json
-file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq
+file `test.json` and issue `JqxQuery <my-query>`this translates into `jq
 ".<my-query>" test.json` as shown below
 
 >
@@ -102,27 +60,21 @@ file `test.json` and issue `JqxQuery <my-query>`: this translates into `jq
     "Michael Marquez"
 <
 
-
-<div class="figure">
-<img src="https://user-images.githubusercontent.com/15387611/113495732-ab7d2000-94f3-11eb-8781-0497771b60a1.gif" title="fig:"/>
-<p class="caption">JqxQuerydemo</p>
-</div>
-
 Default commands
 
-│     command      │                    description                    │
-│JqxList           │populate the quickfix window with json keys        │
-│JqxList string    │populate the quickfix window with string values    │
-│JqxQuery          │executes a generic jq query in the current file    │
-│<CR>              │go to key location in file                         │
-│X                 │query values of key under cursor                   │
-│<Esc>             │close floating window                              │
-
-
+  command          description
+  ---------------- -------------------------------------------------
+  JqxList          populate the quickfix window with json keys
+  JqxList string   populate the quickfix window with string values
+  JqxQuery         executes a generic jq query in the current file
+  <CR>             go to key location in file
+  X                query values of key under cursor
+  <Esc>            close floating window
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
 For more in-depth description and explanations check the documentation `:h
 nvim-jqx` and links therein.
+
 
 YAML FILES ~
 
@@ -130,14 +82,14 @@ YAML FILES ~
 <https://github.com/mikefarah/yq>. Try it out directly with `nvim
 examples/test.yaml -c JqxList`, or execute `JqxQuery` on a `yaml` file.
 
-CUSTOMISATION                                              *jqx-customisation*
+
+CUSTOMISATION                                          *jqx-nil-customisation*
 
 If you prefer key-mappings rather than commands simply bind
 
 >
     nmap ... <Plug>JqxList
 <
-
 
 The configurable options are exposed in nvim-jqx/config.lua
 <https://github.com/gennaro-tedesco/nvim-jqx/blob/master/lua/nvim-jqx/config.lua>
@@ -162,7 +114,6 @@ them as
     }
 <
 
-
 Why not automatically formatting your `json` files as you open them? Set up the
 autogroup
 
@@ -181,11 +132,17 @@ autogroup
 <
 
 
-FEEDBACK                                                        *jqx-feedback*
+FEEDBACK                                                    *jqx-nil-feedback*
 
 If you find this plugin useful consider awarding it a , it is a great way to
 give feedback! Otherwise, any additional suggestions or merge request is warmly
 welcome!
+
+==============================================================================
+1. Links                                                           *jqx-links*
+
+1. *JqxListdemo*: https://user-images.githubusercontent.com/15387611/113495463-4bd24500-94f2-11eb-88b5-64c1ee965886.gif
+2. *JqxQuerydemo*: https://user-images.githubusercontent.com/15387611/113495732-ab7d2000-94f3-11eb-8781-0497771b60a1.gif
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
