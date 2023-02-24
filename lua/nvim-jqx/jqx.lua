@@ -10,20 +10,37 @@ local function has_value(tab, val)
 	return false
 end
 
+---remove vim special characters from json keys
+---@param key string
+---@return string "parsed key"
+local function parse_key(key)
+	return (key:gsub("/", "\\/"))
+end
+
+---return location of key in buffer
+---@param key string
+---@param ft string
+---@return table
 local function get_key_location(key, ft)
 	if ft == "json" then
 		return {
-			row = vim.api.nvim_exec([[g/^\s*"]] .. key .. [["/echo line('.')]], true),
-			col = vim.api.nvim_exec([[g/^\s*"]] .. key .. [["/execute "normal! ^" | echo col('.')-1]], true),
+			row = vim.api.nvim_exec([[g/^\s*"]] .. parse_key(key) .. [["/echo line('.')]], true),
+			col = vim.api.nvim_exec([[g/^\s*"]] .. parse_key(key) .. [["/execute "normal! ^" | echo col('.')-1]], true),
 		}
 	elseif ft == "yaml" then
 		return {
-			row = vim.api.nvim_exec([[g/^]] .. key .. [[/echo line('.')]], true),
-			col = vim.api.nvim_exec([[g/^]] .. key .. [[/execute "normal! ^" | echo col('.')]], true),
+			row = vim.api.nvim_exec([[g/^]] .. parse_key(key) .. [[/echo line('.')]], true),
+			col = vim.api.nvim_exec([[g/^]] .. parse_key(key) .. [[/execute "normal! ^" | echo col('.')]], true),
 		}
+	else
+		return {}
 	end
 end
 
+---fetch json keys for cur buf and populate qf list
+---@param ft string
+---@param type string variable type to fetch if given
+---@param sort boolean sort list alphabetically
 local function populate_qf(ft, type, sort)
 	local cmd_lines = {}
 	local cur_file = vim.fn.getreg("%")

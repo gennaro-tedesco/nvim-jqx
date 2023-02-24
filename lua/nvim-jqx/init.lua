@@ -5,6 +5,7 @@ local jqx = require("nvim-jqx.jqx")
 local config = require("nvim-jqx.config")
 local fw = require("nvim-jqx.floating")
 
+---@returns boolean
 local function is_valid_ft(ft)
 	if not (ft == "json" or ft == "yaml") then
 		print("only json or yaml files")
@@ -28,6 +29,7 @@ local function is_valid_ft(ft)
 	return true
 end
 
+---set keymaps in the qf to query entry on keypress
 local function set_qf_maps(ft)
 	vim.api.nvim_exec(
 		[[autocmd FileType qf nnoremap <buffer> ]]
@@ -39,6 +41,9 @@ local function set_qf_maps(ft)
 	)
 end
 
+---main function interface that populates the quickfix list on invocation
+---invoke set_qf_maps and jqx.populate_qf
+---@param type string variable type to fetch if given
 local function jqx_open(type)
 	local ft = vim.bo.filetype
 	if not is_valid_ft(ft) then
@@ -52,6 +57,8 @@ local function jqx_open(type)
 	jqx.populate_qf(ft, type, config.sort)
 end
 
+---execute jq query from user input
+---@param q string user query
 local function query_jq(q)
 	local ft = vim.bo.filetype
 	if not is_valid_ft(ft) then
