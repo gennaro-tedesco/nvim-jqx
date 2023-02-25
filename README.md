@@ -81,7 +81,10 @@ For more in-depth description and explanations check the documentation `:h nvim-
 
 ### Yaml files
 
-`nvim-jqx` works on `yaml` files too. It requires, however, to install [yq](https://github.com/mikefarah/yq). Try it out directly with `nvim examples/test.yaml -c JqxList`, or execute `JqxQuery` on a `yaml` file.
+`nvim-jqx` works on `yaml` files too. It requires, however, to install [yq](https://github.com/kislyuk/yq). Try it out directly with `nvim examples/test.yaml -c JqxList`, or execute `JqxQuery` on a `yaml` file.
+
+> ⚠️ this plugin works with the Python implementation of yq by @kislyuk, not to be confused
+> with the Go implementation of yq by @mikefarah.
 
 ## Customisation
 
