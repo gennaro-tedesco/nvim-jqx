@@ -24,13 +24,19 @@ end
 local function get_key_location(key, ft)
 	if ft == "json" then
 		return {
-			row = vim.api.nvim_exec([[g/^\s*"]] .. parse_key(key) .. [["/echo line('.')]], true),
-			col = vim.api.nvim_exec([[g/^\s*"]] .. parse_key(key) .. [["/execute "normal! ^" | echo col('.')-1]], true),
+			row = vim.api.nvim_exec2([[g/^\s*"]] .. parse_key(key) .. [["/echo line('.')]], { output = true }).output,
+			col = vim.api.nvim_exec2(
+				[[g/^\s*"]] .. parse_key(key) .. [["/execute "normal! ^" | echo col('.')-1]],
+				{ output = true }
+			).output,
 		}
 	elseif ft == "yaml" then
 		return {
-			row = vim.api.nvim_exec([[g/^]] .. parse_key(key) .. [[/echo line('.')]], true),
-			col = vim.api.nvim_exec([[g/^]] .. parse_key(key) .. [[/execute "normal! ^" | echo col('.')]], true),
+			row = vim.api.nvim_exec2([[g/^]] .. parse_key(key) .. [[/echo line('.')]], { output = true }).output,
+			col = vim.api.nvim_exec2(
+				[[g/^]] .. parse_key(key) .. [[/execute "normal! ^" | echo col('.')]],
+				{ output = true }
+			).output,
 		}
 	else
 		return {}

@@ -35,6 +35,7 @@ Install it using your favourite plugin manager: for instance
 ```lua
 {
   "gennaro-tedesco/nvim-jqx",
+  event = {"BufReadPost"},
   ft = { "json", "yaml" },
 },
 ```
