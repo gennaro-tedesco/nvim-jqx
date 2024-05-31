@@ -31,13 +31,13 @@ end
 
 ---set keymaps in the qf to query entry on keypress
 local function set_qf_maps(ft)
-	vim.api.nvim_exec(
+	vim.api.nvim_exec2(
 		[[autocmd FileType qf nnoremap <buffer> ]]
 			.. config.query_key
 			.. [[ :lua require("nvim-jqx.jqx").on_keystroke("]]
 			.. ft
 			.. [[")<CR> ]],
-		false
+		{ output = false }
 	)
 end
 

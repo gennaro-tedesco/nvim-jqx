@@ -1,4 +1,4 @@
-*jqx.txt*           For Neovim >= 0.8.0          Last change: 2023 February 28
+*jqx.txt*             For Neovim >= 0.8.0             Last change: 2024 May 31
 
 ==============================================================================
 Table of Contents                                      *jqx-table-of-contents*
@@ -7,6 +7,7 @@ Table of Contents                                      *jqx-table-of-contents*
   - Usage                                                          |jqx-usage|
   - Customisation                                          |jqx-customisation|
   - Feedback                                                    |jqx-feedback|
+1. Links                                                           |jqx-links|
 
 
 
@@ -27,12 +28,12 @@ INSTALLATION                                                *jqx-installation*
 
 Install it using your favourite plugin manager: for instance
 
-
 - with lazy.nvim <https://github.com/folke/lazy.nvim>
 
 >lua
     {
       "gennaro-tedesco/nvim-jqx",
+      event = {"BufReadPost"},
       ft = { "json", "yaml" },
     },
 <
@@ -63,11 +64,11 @@ file `test.json` and issue `JqxQuery <my-query>`this translates into `jq
 ".<my-query>" test.json` as shown below
 
 >
-     JqxQuery grammar
+    # JqxQuery grammar
     JqxQuery friends[2].name
     "Michael Marquez"
     
-     jq equivalent
+    # jq equivalent
     jq '.friends[2].name' test.json
     "Michael Marquez"
 <
@@ -84,8 +85,8 @@ Default commands
   <Esc>            close floating window
 Try it out directly with `nvim examples/test.json -c JqxList`.
 
-For more in-depth description and explanations check the documentation `:h
-nvim-jqx` and links therein.
+For more in-depth description and explanations check the documentation
+|nvim-jqx| and links therein.
 
 
 YAML FILES ~
@@ -137,7 +138,7 @@ autogroup
     local jqx = vim.api.nvim_create_augroup("Jqx", {})
     vim.api.nvim_clear_autocmds({ group = jqx })
     vim.api.nvim_create_autocmd("BufWinEnter", {
-        pattern = { ".json", ".yaml" },
+        pattern = { "*.json", "*.yaml" },
         desc = "preview json and yaml files on open",
         group = jqx,
         callback = function()
